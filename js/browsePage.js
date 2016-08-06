@@ -11,6 +11,41 @@ angular.module('browsePage', [])
     datum.dates.push('2016/9/1');
     $scope.dates = datum.dates;
     $scope.participants = datum.participants;
+    $scope.input = function() {
+      var name = this.name;
+      $('#name').text(name + 'の希望日を入力');
+      var selecttag = '<select><option>-</option><option>o</option><option>x</option></select>'
+      for (var i = 0;i < $scope.dates.length;i++) {
+        $('.date-area').append('<p class="date">' + $scope.dates[i] + ':' + selecttag + '</p>')
+      }
+      $("body").append('<div id="modal-bg"></div>');
+
+      modalResize();
+
+      $("#modal-bg,#modal-input").fadeIn("normal");
+
+      $("#cancel").click(function(){
+        $("#modal-input,#modal-bg").fadeOut("normal",function(){
+          $('.date').remove();
+          $('#modal-bg').remove();
+        });
+      });
+
+      $(window).resize(modalResize);
+      function modalResize(){
+
+        var w = $(window).width();
+        var h = $(window).height();
+
+        var cw = $("#modal-input").outerWidth();
+        var ch = $("#modal-input").outerHeight();
+
+        $("#modal-input").css({
+          "left": ((w - cw)/2) + "px",
+          "top": ((h - ch)/2) + "px"
+        });
+      }
+    };
   })
   .error(function (data, status, headers, config) {
     console.log('error!!');

@@ -47,3 +47,12 @@ insert into marubatu values(
   '8/6,8/7,8/8,8/9',
   'o,o,o,o'
 );
+
+insert into ivent values(
+  null,
+  'テスト',
+  '染谷,高畑,浦野',
+  '8/6',
+  'http://hogehoge.com',
+  '2016/8/1'
+);

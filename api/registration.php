@@ -25,5 +25,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   header("Content-Type: application/json");
   echo json_encode($res);
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+  DB::connectDb();
+  $count = 0;
+  $dates = [];
+  while (isset($_POST['date'.strval($count)])) {
+    $dates[] = $_POST['date'.strval($count)];
+    $count++;
+  }
+  $data = [
+    'ivent_id' => null,
+    'ivent_name' => $_POST['eventname'],
+    'participants' => '染谷,高畑,浦野',
+    'dates' => implode(',', $dates),
+    'url' => 'http://hogehoge.com',
+    'deadline' => '2016/8/6'
+  ];
+  DB::insertData(TABLE, $data);
+  echo '参加者記入ページを生成しました。URLは<a href="'.$data['url'].'">'.$data['url'].'</a>になります。';
 }

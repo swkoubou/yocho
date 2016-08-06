@@ -1,6 +1,8 @@
 <?php
 
-require __DIR__.'/../php/config_template.php';
+require __DIR__.'/../php/config.php';
+
+header('Access-Control-Allow-Origin: *');
 
 $token = Config::$SLACK['token'];
 
@@ -14,4 +16,7 @@ foreach ($response['members'] as $member) {
 	$users_list[] = ['name' => $member['name'], 'id' => $member['id']];
 }
 
-echo json_encode($users_list);
+$list =  json_encode($users_list);
+echo $list;
+
+

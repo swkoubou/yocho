@@ -2,7 +2,7 @@
 
 require __DIR__.'/../php/db.php';
 
-const TABLE = 'ivent';
+const TABLE = 'event';
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   DB::connectDb();
@@ -13,8 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $ps = explode(',', $datum['participants']);
     $ds = explode(',', $datum['dates']);
     $res[] = [
-      'ivent_id' => $datum['ivent_id'],
-      'ivent_name' => $datum['ivent_name'],
+      'event_id' => $datum['event_id'],
+      'event_name' => $datum['event_name'],
       'participants' => $ps,
       'dates' => $ds,
       'url' => $datum['url'],
@@ -33,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $count++;
   }
   $data = [
-    'ivent_id' => null,
-    'ivent_name' => $_POST['eventname'],
+    'event_id' => null,
+    'event_name' => $_POST['eventname'],
     'participants' => '染谷,高畑,浦野',
     'dates' => implode(',', $dates),
     'url' => 'http://yocho/hogehoge.html',

@@ -1,7 +1,8 @@
 <?php
 
-require __DIR__.'/../php/db.php';
-require __DIR__.'/../php/createpage.php';
+require_once __DIR__.'/../php/db.php';
+require_once __DIR__.'/../php/createpage.php';
+require_once __DIR__.'/../php/config.php';
 
 const TABLE = 'event';
 
@@ -39,13 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     'event_name' => $_POST['eventname'],
     'participants' => 'uryoya,tibimosu,someya',
     'dates' => implode(',', $dates),
-    'url' => 'http://localhost/GitHub/yocho/event/'.$pagefile,
+    'url' => Config::$ROOT.'event/'.$pagefile,
     'deadline' => '2016/8/6'
   ];
   DB::insertData(TABLE, $data);
   $message = '「'.$data['event_name'].'」の参加者記入ページを作成しました。こちら('.$data['url'].')から希望日時を入力してください。';
   foreach (explode(',', $data['participants']) as $p) {
-    $api = 'http://localhost/GitHub/yocho/api/post_dm.php?name='.$p.'&message='.$message;
+    $api = Config::$ROOT.'/api/post_dm.php?name='.$p.'&message='.$message;
     file_get_contents($api);
     sleep(1);
   }

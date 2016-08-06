@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/../php/config_template.php';
+require __DIR__.'/../php/config.php';
 
 $token = Config::$SLACK['token'];
 

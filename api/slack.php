@@ -13,8 +13,13 @@ class Slack {
 		$response = json_decode($response, true);
 		$users_list = [];
 		foreach ($response['members'] as $member) {
-			$users_list[] = [['name' => $member['name'], 'id' => $member['id']]];
+			$users_list[] = ['name' => $member['name'], 'id' => $member['id']];
 		}
 		return $users_list;
+	}
+
+	function postDirectMessage($id, $message) {
+		$url = "https://slack.com/api/chat.postMessage?token=".$this->token."&channel=".$id."&text=".$message;
+		file_get_contents($url);
 	}
 }

@@ -37,9 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     'ivent_name' => $_POST['eventname'],
     'participants' => '染谷,高畑,浦野',
     'dates' => implode(',', $dates),
-    'url' => 'http://hogehoge.com',
+    'url' => 'http://yocho/hogehoge.html',
     'deadline' => '2016/8/6'
   ];
   DB::insertData(TABLE, $data);
+  header("Content-Type: text/html; charset=utf-8");
   echo '参加者記入ページを生成しました。URLは<a href="'.$data['url'].'">'.$data['url'].'</a>になります。';
 }

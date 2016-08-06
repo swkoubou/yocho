@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     'event_name' => $_POST['eventname'],
     'participants' => 'uryoya,tibimosu,someya',
     'dates' => implode(',', $dates),
-    'url' => 'http://yocho/event/'.$pagefile,
+    'url' => 'http://localhost/GitHub/yocho/event/'.$pagefile,
     'deadline' => '2016/8/6'
   ];
   DB::insertData(TABLE, $data);

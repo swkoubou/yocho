@@ -17,3 +17,12 @@ create table marubatu (
   status varchar(8000),
   FOREIGN KEY (ivent_id) REFERENCES ivent(ivent_id)
 );
+
+insert into ivent values(
+  1,
+  '飲み会',
+  '染谷,高畑,浦野',
+  '8/6,8/7,8/8,8/9',
+  'http://hogehoge.com',
+  '2016/8/1'
+);

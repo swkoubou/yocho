@@ -43,14 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     'deadline' => '2016/8/6'
   ];
   DB::insertData(TABLE, $data);
-  $message = '「'.$data['event_name'].'」の参加者記入ページを作成しました。こちら( '.$data['url'].' )から希望日時を入力してください。';
-  // foreach (explode(',', $data['participants']) as $p) {
-  //   $api = __DIR__.'/post_dm.php?id='.$p.'&message='.$message;
-  //   print $api.'<br>';
-  //   file_get_contents($api);
-  //   sleep(1);
-  // }
+  $message = '「'.$data['event_name'].'」の参加者記入ページを作成しました。こちら('.$data['url'].')から希望日時を入力してください。';
+  foreach (explode(',', $data['participants']) as $p) {
+    $api = 'http://localhost/GitHub/yocho/api/post_dm.php?name='.$p.'&message='.$message;
+    file_get_contents($api);
+    sleep(1);
+  }
   header("Content-Type: text/html; charset=utf-8");
-  // echo '参加者に「'.$data['event_name'].'」の告知を送りました。';
-  echo $message;
+  echo '参加者に「'.$data['event_name'].'」の告知を送りました。';
 }

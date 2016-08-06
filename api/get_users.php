@@ -11,7 +11,7 @@ $response = json_decode($response, true);
 // slack apiの結果からnameとidだけ抽出
 $users_list = [];
 foreach ($response['members'] as $member) {
-	$users_list[] = ['name' => $member['name'], 'id' => $member['id']];
+	$users_list[] = $member['name'];
 }
 
 echo json_encode($users_list);

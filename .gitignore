@@ -1,4 +1,8 @@
 /php/config.php
+<<<<<<< HEAD
+=======
 
 ChromePhp.php
 .idea
+>>>>>>> bc72b277c56608cb53897352fa0afbdf07c7c8f0
+/api/slack_test.php

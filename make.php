@@ -1,3 +1,6 @@
+<?php
+require __DIR__.'/php/config.php';
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -26,7 +29,7 @@
 <body background="img/corkboard.png">
 <div id="div">
 <?php
-echo '<form id="form" method="post" action="/GitHub/yocho/api/registration.php" style="display: inline">';
+echo '<form id="form" method="post" action="'.Config::$ROOT.'/api/registration.php" style="display: inline">';
 echo '<br/><br><br/>';
 
 echo 'ㅤイベント名  <input id="eventname" name="eventname" type="text"><br/><br/>';

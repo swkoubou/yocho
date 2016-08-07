@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>希望日時閲覧ページ</title>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" charset="utf-8">
 		<meta name="viewport" content="width=device-widh, initial-scale=1">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
@@ -19,10 +19,10 @@
     <div ng-app="browsePage" ng-controller="pageCtrl">
       <h2>{{event_name}}</h2>
       <table class="table">
-        <tr><th></th><th scope="row" ng-repeat="d in dates | orderBy: 'name'">{{ d }}</th></tr>
+        <tr><th></th><th class="colum-date" scope="row" ng-repeat="d in dates | orderBy: 'name'">{{ d }}</th></tr>
         <tr ng-repeat="name in participants">
 					<td><button class="btn btn-default" ng-click="input()">{{ name }} <span class="glyphicon glyphicon-pencil"></span></button></td>
-          <td class="{{ name }}-status" ng-repeat="d in dates">-</td>
+          <td class="{{ name }}-status status" ng-repeat="d in dates">-</td>
         </tr>
       </table>
     </div>

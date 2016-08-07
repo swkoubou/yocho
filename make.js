@@ -37,6 +37,7 @@ function check() {
         var api = Config.apiRoot + '/registration.php';
         $.ajax({
             url: api,
+            method: 'POST'
         })
         .success(function (data, status, headers, config) {
 

@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $ds = explode(',', $datum['dates']);
     $ss = explode(',', $datum['status']);
     $res[] = [
-      'ivent_id' => $datum['ivent_id'],
+      'event_id' => $datum['event_id'],
       'participant' => $datum['participant'],
       'dates' => $ds,
       'status' => $ss
@@ -23,5 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   header("Content-Type: application/json");
   echo json_encode($res);
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+  DB::connectDb();
+  $data = [
+    'status' => $_POST['status']
+  ];
+  if (DB::check(TABLE, $_POST['event_id'], $_POST['participant'])) {
+    $data = [
+      'event_id' => $_POST['event_id'],
+      'participant' => $_POST['participant'],
+      'date' => $_POST['dates'],
+      'status' => $_POST['status']
+    ];
+    DB::insertData(TABLE, $data);
+  } else {
+    DB::updateData(TABLE, $data, intval($_POST['event_id']), $_POST['participant']);
+  }
+  // header("Content-Type: text/html; charset=utf-8");
+  var_dump($_POST);
 }

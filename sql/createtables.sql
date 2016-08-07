@@ -28,24 +28,24 @@ insert into event values(
 );
 
 insert into marubatu values(
-  1,
-  '染谷',
-  '8/6,8/7,8/8,8/9',
-  'o,x,o,o'
+  28,
+  'someya',
+  '2016/8/10,8/11',
+  '-,-'
 );
 
 insert into marubatu values(
-  1,
-  '高畑',
-  '8/6,8/7,8/8,8/9',
-  'o,x,x,x'
+  28,
+  'tibimosu',
+  '2016/8/10,8/11',
+  '-,-'
 );
 
 insert into marubatu values(
-  1,
-  '浦野',
-  '8/6,8/7,8/8,8/9',
-  'o,o,o,o'
+  28,
+  'uryoya',
+  '2016/8/10,8/11',
+  '-,-'
 );
 
 insert into event values(

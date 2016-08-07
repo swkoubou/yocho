@@ -7,9 +7,8 @@ require __DIR__.'/php/config.php';
     <meta charset="UTF-8">
     <title>予定を合わせて帳っ!!</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="/js/config/config.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="make.js"></script>
 
     <style>
@@ -49,11 +48,11 @@ echo 'ㅤㅤㅤ広報日時 <input class="date" name="date0" type="text">';
 echo '<br/><br/><br/>';
 echo '</form>';
 //echo 'ㅤ<button id="decide" style="width:50px">決定</button>';
-echo '<input id="decide" type="submit" style="width:50px" value="決定" onclick="check()">';
+echo '<input id="decide" type="submit" style="width:50px" value="送信" onclick="check()">';
 
 
 echo '<span>ㅤㅤ</span>'; //空白文字を入れていい感じにボタンの間をあける
-echo '<button id="add" style="width:50px">add</button>';
+echo '<button id="add" style="width:50px">追加</button>';
 echo '<span>ㅤㅤ</span>'; //空白文字を入れていい感じにボタンの間をあける
 
 $date = '';

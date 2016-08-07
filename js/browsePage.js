@@ -10,6 +10,7 @@ angular.module('browsePage', [])
     //   console.log(marubatu.data);
     // });
     var datum = getEventData(data);
+    console.log(datum);
     $scope.event_id = datum.event_id;
     $scope.event_name = datum.event_name;
     $scope.dates = datum.dates;
@@ -76,8 +77,8 @@ angular.module('browsePage', [])
 });
 
 function getEventData(data) {
-  var href = window.location.href;
-  // var href = 'http://localhost/GitHub/yocho/event/3bqCH96t1Y.php';
+//  var href = window.location.href;
+  var href = 'http://localhost/GitHub/yocho/event/3bqCH96t1Y.php';
   var res = {};
   for (var i = 0;i < data.length;i++) {
     if (data[i]['url'] === href) {

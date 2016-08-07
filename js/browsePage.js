@@ -15,7 +15,9 @@ angular.module('browsePage', [])
     $scope.dates = datum.dates;
     $scope.participants = datum.participants;
     $scope.input = function() {
+      var id = this.event_id;
       var name = this.name;
+      var dates = this.dates;
       $('#name').text(name + 'の希望日を入力');
       for (var i = 0;i < $scope.dates.length;i++) {
         var selecttag = '<select>' +
@@ -26,14 +28,27 @@ angular.module('browsePage', [])
         $('.date-area').append('<p class="date">' + $scope.dates[i] + ':' + selecttag + '</p>')
       }
       $("body").append('<div id="modal-bg"></div>');
-
+      $(".button-area").append('<button class="btn btn-success" id="submit">送信</bunnton>');
+      $(".button-area").append('<button class="btn btn-danger" id="cancel">キャンセル</bunnton>');
       modalResize();
 
       $("#modal-bg,#modal-input").fadeIn("normal");
+      $("#submit").click(function () {
+        var d = createBody(id, name, dates);
+        send($scope, d);
+        $("#modal-input,#modal-bg").fadeOut("normal",function(){
+          $('.date').remove();
+          $("#submit").remove();
+          $("#cancel").remove();
+          $('#modal-bg').remove();
+        });
+      });
 
       $("#cancel").click(function(){
         $("#modal-input,#modal-bg").fadeOut("normal",function(){
           $('.date').remove();
+          $("#submit").remove();
+          $("#cancel").remove();
           $('#modal-bg').remove();
         });
       });
@@ -129,4 +144,35 @@ function object_array_sort(data,key,order){
 function isSelected(order, name, index) {
   var selector = $('.' + name + '-status')[index];
   return (selector.textContent === order? 'selected' : '');
+}
+
+function createBody(id, name, dates) {
+  var selector = $('.' + name + '-status');
+  var status = [];
+  var selector = $('.date').children('select');
+  for (var i = 0;i < selector.length;i++) {
+    status.push(selector[i].value);
+  }
+  var data = {
+    'event_id': id,
+    'participant': name,
+    'dates': dates.join(','),
+    'status': status.join(',')
+  };
+  return data;
+}
+
+function send(scope, data) {
+  var marubatuapi = Config.apiRoot + '/marubatu.php';
+  $.ajax({
+    url: marubatuapi,
+    method: 'POST',
+    data: data
+  })
+  .success(function (res, status, headers, config) {
+    updateMarubatu(scope);
+  })
+  .error(function (res, status, headers, config) {
+    console.log('error!!');
+  });
 }

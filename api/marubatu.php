@@ -23,5 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   header("Content-Type: application/json");
   echo json_encode($res);
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+  DB::connectDb();
+  $data = [
+    'status' => $_POST['status']
+  ];
+  DB::updateData(TABLE, $data, intval($_POST['event_id']), $_POST['participant']);
+  // header("Content-Type: text/html; charset=utf-8");
+  // var_dump($_POST);
 }

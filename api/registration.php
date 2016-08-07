@@ -37,11 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   $pagefile = createPage();
   $data = [
     'event_id' => null,
-    'event_name' => $_POST['eventname'],
-    'participants' => 'uryoya,tibimosu,someya',
-    'dates' => implode(',', $dates),
+    'event_name' => $_POST['event_name'],
+    'participants' => $_POST['participants'],
+    'dates' => $_POST['dates'],
     'url' => Config::$ROOT.'event/'.$pagefile,
-    'deadline' => '2016/8/6'
+    'deadline' => $_POST['deadline']
   ];
   DB::insertData(TABLE, $data);
   $message = '「'.$data['event_name'].'」の参加者記入ページを作成しました。こちら('.$data['url'].')から希望日時を入力してください。';

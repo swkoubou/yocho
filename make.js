@@ -1,9 +1,14 @@
 $(function(){
-    //ボタン押したら階層追加
+    function check(){
+        alert('必要な情報を全て入力してください');
+        return false;
+    }
+    
+    //addタン押したら階層追加
     var i=0;
     $('#add').click(function(){
         i++;
-        $('.date:last').after('<br/><br/>ㅤ開催日時<input class="date" name="date'+ i +'" type="text">');
+        $('.date:last').after('<br/><br/>ㅤㅤㅤ広報日時 <input class="date" name="date'+ i +'" type="text">');
     });
 
     var name = [];
@@ -26,14 +31,5 @@ $(function(){
     });
 });
 
-//年月日をいい感じに取り出す
-var datearray = JSON.parse('<?php echo  $date; ?>');
-var correctdate = [];
-var length = 0;
-for(var i=0; i<datearray.length; i++){
-    var isdate = new Date(datearray[i]);
-    if(isdate != 'Invalid Date'){
-        correctdate[length] = isdate.getFullYear() + '年' + isdate.getMonth() + '月' + isdate.getDate() + '日';
-        length++;
-    }
-}
+
+

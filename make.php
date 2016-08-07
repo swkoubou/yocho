@@ -7,28 +7,29 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" rel="stylesheet">
     <script src="make.js"></script>
+
     <style>
-        div{
+        #div{
             text-align:center;
-            background-image: url("img/tag.png");
-            width:500px;
-            height:460px;
-            top: 0;
-            bottom: 250px;
             left: 0;
             right: 0;
             position: absolute;
             margin: auto;
+            padding: 20px;
+            background: url(img/top.png), url(img/bottom.png), url(img/roop.png);
+            background-position: top center, bottom center, top center;
+            background-repeat: no-repeat, no-repeat, repeat-y;
+            background-size: 500px auto, 500px auto, 500px auto;
         }
     </style>
 </head>
 <body background="img/corkboard.png">
-<div>
+<div id="div">
 <?php
 echo '<form method="post" action="/GitHub/yocho/api/registration.php" style="display: inline">';
 echo '<br/><br><br/>';
 
-echo 'ㅤイベント名  <input name="eventname" type="text"><br/><br/>';
+echo 'ㅤイベント名  <input id="eventname" name="eventname" type="text"><br/><br/>';
 echo '<br/>';
 
 echo 'ㅤ参加者選択 <br/>ㅤ<select class="select" multiple="multiple"><br/>';
@@ -37,19 +38,18 @@ echo 'ㅤㅤ</select><br/><br/>';
 echo '<br/>';
 
 echo 'ㅤ<span style="color:red">*日時記入例: <b>2016/8/6</b>ㅤorㅤ<b>2016-8-7</b></span><br/>';
-echo 'ㅤ締め切り日時  <input name="closedate" type="text"><br/><br/>';
-//echo '<br/>';
+echo 'ㅤ締め切り日時  <input id="closedate" name="closedate" type="text"><br/><br/>';
 
-echo 'ㅤ開催日時  <input class="date" name="date0" type="text">';
+echo 'ㅤ  ㅤ広報日時 <input class="date" name="date0" type="text">';
 
 echo '<br/><br/><br/>';
 echo 'ㅤ<button id="decide" style="width:50px">決定</button>';
 echo '</form>';
 
 echo '<span>ㅤㅤ</span>'; //空白文字を入れていい感じにボタンの間をあける
-echo '<button id="add" style="width:50px">add</button><br/><br/>';
+echo '<button id="add" style="width:50px">add</button>';
+echo '<span>ㅤㅤ</span>'; //空白文字を入れていい感じにボタンの間をあける
 
-$error = '';
 $date = '';
 if(!isset($_POST['eventname'])){
     $error =  'イベント名を入力してください';
@@ -66,9 +66,28 @@ else if(isset($_POST)){
     }
     $date=json_encode($datearray);
 }
+else{
+    $error = null;
+}
+json_encode($error);
 ?>
-
+<button onclick="location.href='index.html'">戻る</button>
 </div>
 </body>
 </html>
+<script>
 
+
+    //年月日をいい感じに取り出す
+    var datearray = JSON.parse('<?php echo  $date; ?>');
+    var correctdate = [];
+    var length = 0;
+    for(var i=0; i<datearray.length; i++){
+        var isdate = new Date(datearray[i]);
+        if(isdate != 'Invalid Date'){
+            correctdate[length] = isdate.getFullYear() + '年' + isdate.getMonth() + '月' + isdate.getDate() + '日';
+            length++;
+        }
+    }
+    console.log(correctdate);
+</script>

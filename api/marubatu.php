@@ -24,18 +24,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   echo json_encode($res);
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   DB::connectDb();
-  $data = [
-    'status' => $_POST['status']
-  ];
   if (DB::check(TABLE, $_POST['event_id'], $_POST['participant'])) {
     $data = [
-      'event_id' => $_POST['event_id'],
+      'event_id' => intval($_POST['event_id']),
       'participant' => $_POST['participant'],
       'date' => $_POST['dates'],
       'status' => $_POST['status']
     ];
+    var_dump($data);
     DB::insertData(TABLE, $data);
   } else {
+    $data = [
+      'status' => $_POST['status']
+    ];
     DB::updateData(TABLE, $data, intval($_POST['event_id']), $_POST['participant']);
   }
   // header("Content-Type: text/html; charset=utf-8");

@@ -42,7 +42,7 @@ class DB {
       if (is_null($v)) {
         $stmt->bindValue(':'.$k, null, PDO::PARAM_NULL);
       } else if (is_int($v)) {
-        $stmt->bindValue(':'.$k, $v, PDO::PARAM_INT);
+        $stmt->bindValue(':'.$k, intval($v), PDO::PARAM_INT);
       } else {
         $stmt->bindValue(':'.$k, $v, PDO::PARAM_STR);
       }
@@ -57,7 +57,6 @@ class DB {
     }, $sql);
     $sql = substr_replace($sql, "", -1);
     $sql = $sql.' where event_id='.$id.' and participant="'.$name.'";';
-    print $sql.'<br>';
     $stmt = self::$db->prepare($sql);
     foreach ($data as $k => $v) {
       if (is_null($v)) {
@@ -73,7 +72,6 @@ class DB {
 
   public function check($table, $id, $name) {
     $sql = 'select * from '.$table.' where event_id='.$id.' and participant="'.$name.'";';
-    print $sql."<br>";
     $stmt = self::$db->query($sql);
     $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return empty($res)? true : false;

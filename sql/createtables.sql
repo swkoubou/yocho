@@ -56,3 +56,10 @@ insert into event values(
   'http://hogehoge.com',
   '2016/8/1'
 );
+
+insert into marubatu values(
+  29,
+  'someya',
+  '2016/8/6,2016/8/6,2016/8/6',
+  'x,x,x'
+);

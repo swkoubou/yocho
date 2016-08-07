@@ -2,7 +2,7 @@
 
 function createPage() {
   $savedir = __DIR__.'/../event/';
-  $pagefile = makeRandStr(10).'.php';
+  $pagefile = makeRandStr(10).'.html';
   createFile($savedir, $pagefile);
   return $pagefile;
 }

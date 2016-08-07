@@ -112,7 +112,7 @@ function updateMarubatu(scope) {
       }
       return true;
     };
-    if (check(scope.dates.length)) {
+    if (check(status.length)) {
       maru = [];
       for (var i = 0;i < status.length;i++) {
         maru[i % scope.dates.length] = (maru[i % scope.dates.length] === undefined? 1 : maru[i % scope.dates.length] + (status[i].textContent === 'o'));

@@ -58,8 +58,8 @@ insert into event values(
 );
 
 insert into marubatu values(
-  29,
+  38,
   'someya',
-  '2016/8/6,2016/8/6,2016/8/6',
+  '2016/8/10,2016/8/11,2016/8/12',
   'x,x,x'
 );

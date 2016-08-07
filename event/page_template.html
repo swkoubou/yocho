@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>希望日時閲覧ページ</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="../js/config/config.js"></script>
+    <script src="../js/browsePage.js"></script>
+    <link href="../css/page.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div ng-app="browsePage" ng-controller="pageCtrl">
+      <h2>{{event_name}}</h2>
+      <table>
+        <tr><th></th><th ng-repeat="d in dates | orderBy: 'name'">{{ d }}</th></tr>
+        <tr ng-repeat="name in participants">
+          <td>{{ name }}<button ng-click="input()">入力</a></td>
+          <td class="{{ name }}-status" ng-repeat="d in dates">-</td>
+        </tr>
+      </table>
+    </div>
+    <div id="modal-input">
+      <h3 id="name"></h3>
+      <div class="date-area">
+      </div>
+      <div class="button-area">
+      </div>
+    </div>
+  </body>
+</html>

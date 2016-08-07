@@ -1,4 +1,3 @@
-marubatu = [];
 angular.module('browsePage', [])
 .controller('pageCtrl', function ($scope, $http) {
   var registrationapi = Config.apiRoot + 'registration.php';
@@ -18,8 +17,12 @@ angular.module('browsePage', [])
     $scope.input = function() {
       var name = this.name;
       $('#name').text(name + 'の希望日を入力');
-      var selecttag = '<select><option>-</option><option>o</option><option>x</option></select>'
       for (var i = 0;i < $scope.dates.length;i++) {
+        var selecttag = '<select>' +
+          '<option value="-"' + isSelected('-', name, i) + '>-</option>' +
+          '<option value="o"' + isSelected('o', name, i) + '>o</option>' +
+          '<option value="x"' + isSelected('x', name, i) + '>x</option>' +
+          '</select>';
         $('.date-area').append('<p class="date">' + $scope.dates[i] + ':' + selecttag + '</p>')
       }
       $("body").append('<div id="modal-bg"></div>');
@@ -121,4 +124,9 @@ function object_array_sort(data,key,order){
   });
 
   return data; // ソート後の配列を返す
+}
+
+function isSelected(order, name, index) {
+  var selector = $('.' + name + '-status')[index];
+  return (selector.textContent === order? 'selected' : '');
 }

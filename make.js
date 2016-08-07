@@ -1,8 +1,5 @@
 $(function(){
-    function check(){
-        alert('必要な情報を全て入力してください');
-        return false;
-    }
+
     
     //addタン押したら階層追加
     var i=0;
@@ -30,6 +27,25 @@ $(function(){
         }
     });
 });
+function check() {
+    console.log('event'+document.getElementById('eventname').value);
+    console.log('close'+document.getElementById('closedate').value);
+    if (document.getElementById('eventname').value == "" || document.getElementById('closedate').value == "") {
+        alert("必要な情報を全て入力してください");
+        return false;
+    } else {
+        location.href = '/GitHub/yocho/api/registration.php';
+        return true;
+    }
+}
+// function check(){
+//     var eventname1 = document.forms.form.eventname.value;
+//     console.log('event='+eventname1);
+//     var closedate1 = document.forms.form.closedate.value;
+//     console.log('close='+closedate1);
+//     alert('必要な情報を全て入力してください');
+//     return false;
+// }
 
 
 

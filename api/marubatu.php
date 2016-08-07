@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $ds = explode(',', $datum['dates']);
     $ss = explode(',', $datum['status']);
     $res[] = [
-      'ivent_id' => $datum['ivent_id'],
+      'event_id' => $datum['event_id'],
       'participant' => $datum['participant'],
       'dates' => $ds,
       'status' => $ss

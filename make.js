@@ -1,6 +1,6 @@
 $(function(){
 
-    
+
     //addタン押したら階層追加
     var i=0;
     $('#add').click(function(){
@@ -34,7 +34,16 @@ function check() {
         alert("必要な情報を全て入力してください");
         return false;
     } else {
-        location.href = '/GitHub/yocho/api/registration.php';
+        var api = Config.apiRoot + '/registration.php';
+        $.ajax({
+            url: api,
+        })
+        .success(function (data, status, headers, config) {
+
+        })
+        .error(function (data, status, headers, config) {
+            console.log('error!!')
+        });
         return true;
     }
 }

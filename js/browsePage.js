@@ -170,6 +170,7 @@ function send(scope, data) {
     data: data
   })
   .success(function (res, status, headers, config) {
+    console.log(res);
     updateMarubatu(scope);
   })
   .error(function (res, status, headers, config) {

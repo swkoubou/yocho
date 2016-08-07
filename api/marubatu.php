@@ -27,7 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   $data = [
     'status' => $_POST['status']
   ];
-  DB::updateData(TABLE, $data, intval($_POST['event_id']), $_POST['participant']);
+  if (DB::check(TABLE, $_POST['event_id'], $_POST['participant'])) {
+    $data = [
+      'event_id' => $_POST['event_id'],
+      'participant' => $_POST['participant'],
+      'date' => $_POST['dates'],
+      'status' => $_POST['status']
+    ];
+    DB::insertData(TABLE, $data);
+  } else {
+    DB::updateData(TABLE, $data, intval($_POST['event_id']), $_POST['participant']);
+  }
   // header("Content-Type: text/html; charset=utf-8");
-  // var_dump($_POST);
+  var_dump($_POST);
 }

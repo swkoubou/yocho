@@ -70,4 +70,12 @@ class DB {
     }
     $stmt->execute();
   }
+
+  public function check($table, $id, $name) {
+    $sql = 'select * from '.$table.' where event_id='.$id.' and participant="'.$name.'";';
+    print $sql."<br>";
+    $stmt = self::$db->query($sql);
+    $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return empty($res)? true : false;
+  }
 }

@@ -6,6 +6,7 @@ angular.module('browsePage', [])
     method: 'GET'
   })
   .success(function (data, status, headers, config) {
+    var idx = -1;
     var datum = getEventData(data);
     $scope.event_id = datum.event_id;
     $scope.event_name = datum.event_name;
@@ -64,6 +65,7 @@ angular.module('browsePage', [])
           "top": ((h - ch)/2) + "px"
         });
       }
+
     };
     updateMarubatu($scope);
   })
@@ -99,6 +101,31 @@ function updateMarubatu(scope) {
       for (var j = 0;j < selector.length;j++) {
         selector[j].textContent = res[i].status[j];
       }
+    }
+    // 最適な日にちの表示
+    status = $('.status');
+    var check = function (len) {
+      for (var i = 0;i < len;i++) {
+        if ((status[i].textContent === '-')) {
+          return false;
+        }
+      }
+      return true;
+    };
+    if (check(scope.dates.length)) {
+      maru = [];
+      for (var i = 0;i < status.length;i++) {
+        maru[i % scope.dates.length] = (maru[i % scope.dates.length] === undefined? 1 : maru[i % scope.dates.length] + (status[i].textContent === 'o'));
+      }
+      var temp = -1;
+      for (var i = 0;i < maru.length;i++) {
+        if (temp < maru[i]) {
+          temp = maru[i];
+          idx = i;
+        }
+      }
+      var day = $('.colum-date')[idx];
+      alert('最適な日にちは、' + day.textContent + 'です。');
     }
   })
   .error(function (data, status, headers, config) {

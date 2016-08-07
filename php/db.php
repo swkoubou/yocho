@@ -32,11 +32,17 @@ class DB {
   }
 
   public static function insertData($table, $data) {
-    $sql = "insert into " . $table . " set ";
+    // $sql = "insert into " . $table . " set ";
+    // $sql = array_reduce(array_keys($data), function (&$res, $key) {
+    //     return $res . $key . " = :" . $key . ",";
+    // }, $sql);
+    // $sql = substr_replace($sql, "", -1);
+    $sql = 'insert into '.$table.' (';
+    $sql .= implode(',', array_keys($data)).') values(';
     $sql = array_reduce(array_keys($data), function (&$res, $key) {
-        return $res . $key . " = :" . $key . ",";
+        return $res . ":" . $key . ",";
     }, $sql);
-    $sql = substr_replace($sql, "", -1);
+    $sql = substr_replace($sql, "", -1).");";
     $stmt = self::$db->prepare($sql);
     foreach ($data as $k => $v) {
       if (is_null($v)) {

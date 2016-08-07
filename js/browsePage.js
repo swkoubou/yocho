@@ -76,8 +76,8 @@ angular.module('browsePage', [])
 });
 
 function getEventData(data) {
-  // var href = window.location.href;
-  var href = 'http://localhost/GitHub/yocho/event/3bqCH96t1Y.php';
+  var href = window.location.href;
+  // var href = 'http://localhost/GitHub/yocho/event/3bqCH96t1Y.php';
   var res = {};
   for (var i = 0;i < data.length;i++) {
     if (data[i]['url'] === href) {

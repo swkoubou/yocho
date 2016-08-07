@@ -26,7 +26,7 @@
 <body background="img/corkboard.png">
 <div id="div">
 <?php
-echo '<form method="post" action="/GitHub/yocho/api/registration.php" style="display: inline">';
+echo '<form id="form" method="post" action="/GitHub/yocho/api/registration.php" style="display: inline">';
 echo '<br/><br><br/>';
 
 echo 'ㅤイベント名  <input id="eventname" name="eventname" type="text"><br/><br/>';
@@ -40,24 +40,20 @@ echo '<br/>';
 echo 'ㅤ<span style="color:red">*日時記入例: <b>2016/8/6</b>ㅤorㅤ<b>2016-8-7</b></span><br/>';
 echo 'ㅤ締め切り日時  <input id="closedate" name="closedate" type="text"><br/><br/>';
 
-echo 'ㅤ  ㅤ広報日時 <input class="date" name="date0" type="text">';
+echo 'ㅤㅤㅤ広報日時 <input class="date" name="date0" type="text">';
 
 echo '<br/><br/><br/>';
-echo 'ㅤ<button id="decide" style="width:50px">決定</button>';
 echo '</form>';
+//echo 'ㅤ<button id="decide" style="width:50px">決定</button>';
+echo '<input id="decide" type="submit" style="width:50px" value="決定" onclick="check()">';
+
 
 echo '<span>ㅤㅤ</span>'; //空白文字を入れていい感じにボタンの間をあける
 echo '<button id="add" style="width:50px">add</button>';
 echo '<span>ㅤㅤ</span>'; //空白文字を入れていい感じにボタンの間をあける
 
 $date = '';
-if(!isset($_POST['eventname'])){
-    $error =  'イベント名を入力してください';
-}
-else if(!isset($_POST['closedate'])){
-    $error =  '締め切り日時を入力してください';
-}
-else if(isset($_POST)){
+if(isset($_POST)){
     $datearray = [];
     foreach($_POST as $value){
         if($value == $_POST['eventname'] || $value == $_POST['closedate'])
@@ -66,10 +62,6 @@ else if(isset($_POST)){
     }
     $date=json_encode($datearray);
 }
-else{
-    $error = null;
-}
-json_encode($error);
 ?>
 <button onclick="location.href='index.html'">戻る</button>
 </div>
